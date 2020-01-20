@@ -1,0 +1,160 @@
+﻿npm i -g @vue/cli   -------安装vue-cli
+vue init webpack gkvue     ------gkvue是项目
+cnpm install    ----安装依赖
+npm run dev   ----启动项目
+
+注：卸载老版本方法：npm uninstall vue-cli -g
+
+http://localhost:8088访问   config--index.js里面可以修改端口
+注意：
+config--index.js  build:{assetsPublicPath: './',} 不修改打包后是空白页
+
+
+网站缩略图：
+<link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico"/>
+
+
+引用stylus:
+cnpm install stylus stylus-loader --save-dev 
+<style lang="stylus"></style>
+import './assets/base.styl'
+
+
+引入font-awesome:
+npm install font-awesome --save
+main.js中引入    import 'font-awesome/css/font-awesome.min.css'
+<i class="fa fa-search"></i> 使用即可
+
+
+引入阿里巴巴图标库图标：
+main.js中引入    import './assets/font/iconfont.css'
+
+引入echarts:
+cnpm install echarts --save
+var echarts = require('echarts/lib/echarts');
+require('echarts/lib/chart/bar');
+require('echarts/lib/component/tooltip');
+require('echarts/lib/component/title');
+
+引入elementUI：
+npm i element-ui -S
+import Element from 'element-ui';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(Element, { size: 'small', zIndex: 3000 });
+
+国际化--中英文切换：
+npm install vue-i18n
+import VueI18n from 'vue-i18n'   ----main.js
+Vue.use(VueI18n)
+const i18n = new VueI18n({
+    locale: 'zh-CN',    // 语言标识
+    //this.$i18n.locale // 通过切换locale的值来实现语言切换
+    messages: {
+      'zh-CN': require('./assets/lang/zh'),   // 中文语言包
+      'en-US': require('./assets/lang/en')    // 英文语言包
+    }
+})
+new Vue({
+    el: '#app',
+    i18n,
+    router,
+    components: { App },
+    template: '<App/>'
+})
+
+
+index.html里面引入jq，这样不会打包到项目中
+
+自定义指令：
+directives:{
+    color:function(el,binding){
+        el.style.color=binging.value
+    },
+    custom:{
+        bind(el,binding){
+
+        },
+        inserted(el){
+            el.style.color = binging.value
+        }
+    }
+}
+注：要去看钩子函数参数，这里支只列出来两个
+简单使用：<p v-color="'red'">hello world</p>
+特例：v-focus 让input进入页面即可获取焦点
+<input type="text" v-focus/>
+directives:{
+    color:function(el,binding){
+        el.focus()
+    }
+}
+
+--save 会自动添加到package.json里面
+npm install vue-router --save
+import Vuerouter from 'vue-router'   main.js里面引入
+Vue.use(Vuerouter)
+mode:'history',//去掉路由地址的#
+
+地址栏传参和嵌套路由:
+<p class="items"><router-link to="biography/参数一/parm2/参数三">地址栏传参</router-link></p>
+<p class="items"><router-link to="biography1/bioChild">嵌套子路由</router-link></p>
+{
+    /* 地址栏传参：parm2为固定传参，否则不匹配页面 */
+    path: '/biography/:parm1/parm2/:parm3',
+    name: 'biography',
+    component: biography
+},
+{
+    /* 嵌套路由 http://localhost:8888/biography1/bioChild */
+    path: '/biography1', 
+    component: biography,
+    children:[
+        {
+            path: 'bioChild',
+            component: bioChild
+        }
+    ]
+}
+redirect:'/iconfontVue', 路由重定向
+下面是页面取值和js里面取值：
+<p>地址栏传的参数一：{{ $route.params.parm1 }}</p>
+console.log("地址栏传参是：",this.$route.params);
+
+深度监视：object||array
+data(){
+    return{
+        stus:[{name:"jack"}]
+    }
+},
+watch:{
+   stus:{
+        deep:true,
+        handler:function(newV,oldV){
+            
+        }
+   } 
+}
+
+
+$属性：$refs 获取组件内的元素
+$parent：获取当前组件对象的父组件
+$children:获取子组件
+$root:获取new vue实例 vm
+$el:组件对象的DOM元素
+this.$nextTick(function(){  })真正渲染DOM到页面后，才做的事情 mounted里面
+
+
+升级vue版本：vue-router  vuex也是同样的做法
+npm uninstall vue
+npm i vue 
+
+npm i module_name -S    即    npm install module_name --save     写入dependencies，发布到开发环境
+npm i module_name -D    即    npm install module_name --save-dev  写入devDependencies，发布到生产环境
+npm i module_name -g    即    global全局安装(命令行使用)
+npm i module_name       即    本地安装(将安装包放在 ./node_modules 下)
+
+
+
+
+

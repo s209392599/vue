@@ -1,0 +1,12 @@
+elementUI的传值，修改插件的大小，
+各个组件之间的传值
+集成vux,怎么删除vux
+国际化的切换，读取，下次进入是否能继续国际化
+elementUI的国际化切换
+组件之间的传值
+能否集成一个动态的数据库
+跳转页面怎么携带参数
+三种跳转方式之间的对比，不能一直使用router-link
+怎么解决首屏的加载速度
+使用滚动-scroll,以及下拉时提示的一个样式问题
+http://element-cn.eleme.io/#/zh-CN/component/table   table的集成，锁定列的参考 
