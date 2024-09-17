@@ -18,13 +18,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14' # 或其他你项目需要的版本
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
       - name: Build
-        run: npm run build # 确保你的 dist 文件夹是通过这个命令生成的
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
