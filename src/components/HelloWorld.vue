@@ -11,6 +11,7 @@ const count = ref(0);
 <template>
   <h1>boxue is 666</h1>
   <h1>boxue is 666--2024年9月17日22:03:25</h1>
+  <h1>boxue is 666--2024年9月17日22:03:25</h1>
   <h1>{{ msg }}</h1>
 
   <div class="card">
